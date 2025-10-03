@@ -1,4 +1,5 @@
 import { SearchInput } from "../components/ui/SearchInput";
+import { PropertyList } from "../components/features/PropertyList";
 
 export const Home = () => {
   return (
@@ -15,11 +16,10 @@ export const Home = () => {
             Añadir nueva propiedad
           </button>
         </div>
-
         {/* Buscador */}
-        <div className="mt-20 flex justify-center">
-          <SearchInput />
-        </div>
+        <SearchInput />
+        {/*Lista de propiedades*/}
+        <PropertyList />
       </div>
     </div>
   );
