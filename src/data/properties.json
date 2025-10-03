@@ -1,0 +1,65 @@
+[
+    {
+        "id": "prop-1",
+        "title": "Apartamento Moderno en el Centro",
+        "price": 450000,
+        "currency": "USD",
+        "location": "Centro, Ciudad Metro",
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "area": 85,
+        "type": "apartamento",
+        "status": "en venta",
+        "features": [
+            "ascensor",
+            "parking",
+            "seguridad"
+        ],
+        "description": "Hermoso apartamento moderno con vistas a la ciudad...",
+        "images": [
+            "https://source.unsplash.com/random/300x200/?apartment"
+        ]
+    },
+    {
+        "id": "prop-2",
+        "title": "Casa Familiar con Jardín",
+        "price": 680000,
+        "currency": "USD",
+        "location": "Zona Residencial, Ciudad Metro",
+        "bedrooms": 4,
+        "bathrooms": 2,
+        "area": 180,
+        "type": "casa",
+        "status": "en venta",
+        "features": [
+            "jardín",
+            "terraza",
+            "garaje",
+            "piscina"
+        ],
+        "description": "Amplia casa familiar con jardín y piscina en zona tranquila...",
+        "images": [
+            "https://source.unsplash.com/random/300x200/?house"
+        ]
+    },
+    {
+        "id": "prop-3",
+        "title": "Oficina en Torre Empresarial",
+        "price": 2500,
+        "currency": "USD",
+        "location": "Distrito Financiero, Ciudad Metro",
+        "bathrooms": 1,
+        "area": 60,
+        "type": "oficina",
+        "status": "en alquiler",
+        "features": [
+            "recepción",
+            "sala de reuniones",
+            "seguridad 24h"
+        ],
+        "description": "Oficina moderna en prestigiosa torre empresarial...",
+        "images": [
+            "https://source.unsplash.com/random/300x200/?office"
+        ]
+    }
+]
