@@ -5,8 +5,14 @@ import { filterProperties } from "../utils/filterProperties.js";
 import { useState } from "react";
 import propertiesData from "../data/properties.json";
 export const Home = () => {
+  {
+    /*States*/
+  }
   const [search, setSearch] = useState();
-
+  const [addProperty, setAddProperty] = useState(false);
+  {
+    /*Functions*/
+  }
   const filteredProperties = filterProperties(propertiesData, search);
 
   return (
@@ -19,13 +25,17 @@ export const Home = () => {
             Propiedades
           </h1>
           {/*Boton */}
-          <BtnAddProperty />
+          <BtnAddProperty
+            addProperty={addProperty}
+            setAddProperty={setAddProperty}
+          />
         </div>
         {/* Buscador */}
         <SearchInput search={search} setSearch={setSearch} />
         {/*Lista de propiedades*/}
         <PropertyList properties={filteredProperties} />
       </div>
+      {addProperty ? <div>Hola españita</div> : null}
     </div>
   );
 };
