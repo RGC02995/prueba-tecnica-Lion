@@ -3,9 +3,12 @@
         "id": "prop-1",
         "title": "Apartamento Moderno en el Centro",
         "price": 450000,
+        "rooms": 1,
+        "office": "EEUU",
         "currency": "USD",
         "location": "Centro, Ciudad Metro",
         "bedrooms": 2,
+        "reference": "REF-1",
         "bathrooms": 1,
         "area": 85,
         "type": "apartamento",
@@ -17,16 +20,20 @@
         ],
         "description": "Hermoso apartamento moderno con vistas a la ciudad...",
         "images": [
-            "https://source.unsplash.com/random/300x200/?apartment"
-        ]
+            "https://imgs.search.brave.com/7NloSzZA7a7DBw4D6ap4BZUvAcEHsxIhgKIaQVwi5xA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9pbWFnZS12/ZWN0b3IvaW1hZ2Ut/Y29taW5nLXNvb24t/bm8tcGhvdG8tMjYw/bnctMjE1NTI0Mjk0/NS5qcGc"
+        ],
+        "date": "2/09/2024"
     },
     {
         "id": "prop-2",
         "title": "Casa Familiar con Jardín",
         "price": 680000,
+        "rooms": 2,
+        "office": "Valencia",
         "currency": "USD",
         "location": "Zona Residencial, Ciudad Metro",
         "bedrooms": 4,
+        "reference": "REF-2",
         "bathrooms": 2,
         "area": 180,
         "type": "casa",
@@ -39,16 +46,20 @@
         ],
         "description": "Amplia casa familiar con jardín y piscina en zona tranquila...",
         "images": [
-            "https://source.unsplash.com/random/300x200/?house"
-        ]
+            "https://imgs.search.brave.com/7NloSzZA7a7DBw4D6ap4BZUvAcEHsxIhgKIaQVwi5xA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9pbWFnZS12/ZWN0b3IvaW1hZ2Ut/Y29taW5nLXNvb24t/bm8tcGhvdG8tMjYw/bnctMjE1NTI0Mjk0/NS5qcGc"
+        ],
+        "date": "03/09/2024"
     },
     {
         "id": "prop-3",
         "title": "Oficina en Torre Empresarial",
         "price": 2500,
+        "rooms": 3,
+        "office": "Valencia",
         "currency": "USD",
         "location": "Distrito Financiero, Ciudad Metro",
         "bathrooms": 1,
+        "reference": "REF-3",
         "area": 60,
         "type": "oficina",
         "status": "en alquiler",
@@ -59,7 +70,80 @@
         ],
         "description": "Oficina moderna en prestigiosa torre empresarial...",
         "images": [
-            "https://source.unsplash.com/random/300x200/?office"
-        ]
+            "https://imgs.search.brave.com/7NloSzZA7a7DBw4D6ap4BZUvAcEHsxIhgKIaQVwi5xA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9pbWFnZS12/ZWN0b3IvaW1hZ2Ut/Y29taW5nLXNvb24t/bm8tcGhvdG8tMjYw/bnctMjE1NTI0Mjk0/NS5qcGc"
+        ],
+        "date": "21/09/2024"
+    },
+    {
+        "id": "prop-4",
+        "title": "Oficina en Torre Empresarial",
+        "price": 2500,
+        "rooms": 4,
+        "office": "Salamanca",
+        "currency": "USD",
+        "location": "Distrito Financiero, Ciudad Metro",
+        "bathrooms": 1,
+        "reference": "REF-3",
+        "area": 60,
+        "type": "oficina",
+        "status": "en alquiler",
+        "features": [
+            "recepción",
+            "sala de reuniones",
+            "seguridad 24h"
+        ],
+        "description": "Oficina moderna en prestigiosa torre empresarial...",
+        "images": [
+            "https://imgs.search.brave.com/7NloSzZA7a7DBw4D6ap4BZUvAcEHsxIhgKIaQVwi5xA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9pbWFnZS12/ZWN0b3IvaW1hZ2Ut/Y29taW5nLXNvb24t/bm8tcGhvdG8tMjYw/bnctMjE1NTI0Mjk0/NS5qcGc"
+        ],
+        "date": "20/09/2024"
+    },
+    {
+        "id": "prop-5",
+        "title": "Oficina en Torre Empresarial",
+        "price": 2500,
+        "rooms": 5,
+        "office": "Portugal",
+        "currency": "USD",
+        "location": "Distrito Financiero, Ciudad Metro",
+        "bathrooms": 1,
+        "reference": "REF-3",
+        "area": 60,
+        "type": "oficina",
+        "status": "en alquiler",
+        "features": [
+            "recepción",
+            "sala de reuniones",
+            "seguridad 24h"
+        ],
+        "description": "Oficina moderna en prestigiosa torre empresarial...",
+        "images": [
+            "https://imgs.search.brave.com/7NloSzZA7a7DBw4D6ap4BZUvAcEHsxIhgKIaQVwi5xA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9pbWFnZS12/ZWN0b3IvaW1hZ2Ut/Y29taW5nLXNvb24t/bm8tcGhvdG8tMjYw/bnctMjE1NTI0Mjk0/NS5qcGc"
+        ],
+        "date": "12/09/2024"
+    },
+    {
+        "id": "prop-6",
+        "title": "Oficina en Torre Empresarial",
+        "price": 2500,
+        "rooms": 6,
+        "office": "Italia",
+        "currency": "USD",
+        "location": "Distrito Financiero, Ciudad Metro",
+        "bathrooms": 1,
+        "reference": "REF-3",
+        "area": 60,
+        "type": "oficina",
+        "status": "en alquiler",
+        "features": [
+            "recepción",
+            "sala de reuniones",
+            "seguridad 24h"
+        ],
+        "description": "Oficina moderna en prestigiosa torre empresarial...",
+        "images": [
+            "https://imgs.search.brave.com/7NloSzZA7a7DBw4D6ap4BZUvAcEHsxIhgKIaQVwi5xA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9pbWFnZS12/ZWN0b3IvaW1hZ2Ut/Y29taW5nLXNvb24t/bm8tcGhvdG8tMjYw/bnctMjE1NTI0Mjk0/NS5qcGc"
+        ],
+        "date": "01/09/2024"
     }
 ]
