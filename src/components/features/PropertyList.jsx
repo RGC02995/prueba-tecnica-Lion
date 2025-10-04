@@ -1,10 +1,7 @@
-import propertiesData from "../../data/properties.json";
-
-export const PropertyList = () => {
+export const PropertyList = ({ properties }) => {
   return (
-    <div className=" mt-4 overflow-x-auto min-w-[300px] rounded-md  max-h-[60vh] sm:font-medium font-light">
-      <table className="w-full border-collapse text-sm">
-        {/* Header */}
+    <div className="mt-4 overflow-x-auto rounded-md max-h-[60vh]">
+      <table className="w-full border-collapse text-sm mt-4">
         <thead className="bg-gray-200 font-thin text-gray-700">
           <tr>
             <th className="p-2 text-center">Foto</th>
@@ -18,31 +15,34 @@ export const PropertyList = () => {
             <th className="p-2 text-center">Fecha</th>
           </tr>
         </thead>
-
-        {/*Body*/}
-        <tbody className="">
-          {propertiesData.map((property) => (
-            <tr
-              key={property.id}
-              className="border-t border-black  text-center m-auto"
-            >
-              <td className="p-4">
-                <img
-                  src={property.images}
-                  alt="imagen random"
-                  className=" w-30 min-w-20 rounded-md"
-                />
+        <tbody>
+          {properties.length > 0 ? (
+            properties.map((property) => (
+              <tr key={property.id} className="border-t text-center">
+                <td className="p-2">
+                  <img
+                    src={property.images}
+                    alt="foto"
+                    className="w-20 h-20 object-cover rounded"
+                  />
+                </td>
+                <td className="p-2">{property.office}</td>
+                <td className="p-2">{property.reference}</td>
+                <td className="p-2">{property.type}</td>
+                <td className="p-2">{property.location}</td>
+                <td className="p-2">{property.price}€</td>
+                <td className="p-2">{property.rooms}</td>
+                <td className="p-2">{property.area} m2</td>
+                <td className="p-2">{property.date}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="9" className="text-center p-4 text-gray-500">
+                No se encontraron propiedades
               </td>
-              <td className="p-4">{property.office}</td>
-              <td className="p-4">{property.reference}</td>
-              <td className="p-4">{property.type}</td>
-              <td className="p-4">{property.location}</td>
-              <td className="p-4">{property.price}€</td>
-              <td className="p-4">{property.rooms}</td>
-              <td className="p-4">{property.area} m2</td>
-              <td className="p-4">{property.date}</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>

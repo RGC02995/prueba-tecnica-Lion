@@ -1,8 +1,14 @@
 import { SearchInput } from "../components/ui/SearchInput";
 import { PropertyList } from "../components/features/PropertyList";
-import { BtnSearchPropertie } from "../components/ui/BtnSearchPropertie";
-
+import { BtnAddProperty } from "../components/ui/BtnAddProperty";
+import { filterProperties } from "../utils/filterProperties.js";
+import { useState } from "react";
+import propertiesData from "../data/properties.json";
 export const Home = () => {
+  const [search, setSearch] = useState();
+
+  const filteredProperties = filterProperties(propertiesData, search);
+
   return (
     <div className="w-full min-h-screen bg-neutral-100 flex flex-col items-center py-6">
       {/* Ventana blanca */}
@@ -13,12 +19,12 @@ export const Home = () => {
             Propiedades
           </h1>
           {/*Boton */}
-          <BtnSearchPropertie />
+          <BtnAddProperty />
         </div>
         {/* Buscador */}
-        <SearchInput />
+        <SearchInput search={search} setSearch={setSearch} />
         {/*Lista de propiedades*/}
-        <PropertyList />
+        <PropertyList properties={filteredProperties} />
       </div>
     </div>
   );
