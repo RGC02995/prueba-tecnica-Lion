@@ -1,14 +1,14 @@
 import { useState } from "react";
 
-import { SearchInput } from "../components/ui/SearchInput";
-import { PropertyList } from "../components/features/PropertyList";
-import { BtnAddProperty } from "../components/ui/BtnAddProperty";
-import { AddPropertyModal } from "../components/ui/AddPropertyModal";
-import { filterProperties } from "../utils/filterProperties.js";
+import { SearchInput } from "../../components/ui/SearchInput";
+import { PropertyList } from "../../components/features/PropertyList";
+import { BtnAddProperty } from "../../components/ui/BtnAddProperty";
+import { AddPropertyModal } from "../../components/ui/AddPropertyModal";
+import { filterProperties } from "../../utils/filterProperties.js";
 
 // import propertiesData from "../data/properties.json";
 
-import { useProperties } from "../hooks/useProperties.js";
+import { useProperties } from "../../hooks/useProperties.js";
 
 export const Home = () => {
   const { allProperties, addProperty } = useProperties();
@@ -23,7 +23,7 @@ export const Home = () => {
   const filteredProperties = filterProperties(allProperties, search);
 
   return (
-    <div className="w-full h-screen bg-neutral-200 flex flex-col items-center py-6">
+    <div className="w-full h-screen bg-neutral-200 flex flex-col items-center py-6 p-2 overflow-hidden">
       {/* Ventana blanca */}
       <div className=" w-[90vw] h-[90vh] p-6 rounded-lg shadow-lg flex flex-col bg-neutral-100">
         {/* Header: Título + Botón */}
