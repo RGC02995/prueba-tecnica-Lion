@@ -1,8 +1,8 @@
 export const PropertyList = ({ properties }) => {
   return (
-    <div className="mt-4 overflow-x-auto rounded-md max-h-[60vh]">
-      <table className="w-full border-collapse text-sm mt-4">
-        <thead className="bg-gray-200 font-thin text-gray-700">
+    <div className="mt-3 overflow-x-auto rounded-md max-h-[80vh] no-scrollbar">
+      <table className="w-full border-collapse text-[0.5rem] mt-4 overflow-hidden rounded-tl-md rounded-tr-md ">
+        <thead className="bg-gray-200 font-thin text-gray-700  ">
           <tr>
             <th className="p-2 text-center">Foto</th>
             <th className="p-2 text-center">Oficina</th>

@@ -4,3 +4,7 @@
   font-size: 25px;
   color: black;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
