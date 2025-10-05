@@ -1,12 +1,14 @@
-import { useProperties } from "../../hooks//useProperties.js";
 import { handleSubmitForm } from "../../utils/handleSubmitForm.js";
-
-export const AddPropertyModal = () => {
-  const { addProperty } = useProperties();
-
+import { handleClickOutside } from "../../utils/handleClickOutside.js";
+export const AddPropertyModal = ({ setAddProperty, addProperty }) => {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-30">
+    <div
+      onClick={(e) => handleClickOutside(e, addProperty, setAddProperty)}
+      id="divForm"
+      className="fixed inset-0 flex items-center justify-center bg-black/50 z-30"
+    >
       <form
+        id="addEventForm"
         onSubmit={(e) => handleSubmitForm(e, addProperty)}
         className="w-[300px] p-4 z-40 bg-neutral-600 
                    absolute top-1/2 left-1/2 transform 

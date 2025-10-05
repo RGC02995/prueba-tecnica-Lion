@@ -17,7 +17,7 @@ export const PropertyList = ({ properties }) => {
         </thead>
         <tbody>
           {properties.length > 0 ? (
-            properties.map((property) => (
+            properties?.map((property) => (
               <tr key={property.id} className="border-t text-center">
                 <td className="p-2">
                   <img
