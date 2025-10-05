@@ -1,14 +1,8 @@
-export const PropertyList = ({
-  properties,
-  onRowClick,
-  setSelectedPropertie,
-  setShowSpecs,
-  showSpecs,
-}) => {
+export const PropertyList = ({ properties, onRowClick }) => {
   return (
     <div className="mt-3 overflow-x-auto rounded-md max-h-[80vh] no-scrollbar">
-      <table className="w-full border-collapse text-[0.5rem] mt-4 overflow-hidden rounded-tl-md rounded-tr-md ">
-        <thead className="bg-gray-200 font-thin text-gray-700  ">
+      <table className="w-full border-collapse text-[0.5rem] mt-4 overflow-hidden rounded-tl-md rounded-tr-md">
+        <thead className="bg-gray-200 font-thin text-gray-700">
           <tr>
             <th className="p-2 text-center">Foto</th>
             <th className="p-2 text-center">Oficina</th>
@@ -23,18 +17,11 @@ export const PropertyList = ({
         </thead>
         <tbody>
           {properties.length > 0 ? (
-            properties?.map((property) => (
+            properties.map((property) => (
               <tr
                 key={property.id}
                 className="border-t text-center cursor-pointer hover:bg-neutral-300"
-                onClick={() =>
-                  onRowClick(
-                    property,
-                    setSelectedPropertie,
-                    setShowSpecs,
-                    showSpecs
-                  )
-                }
+                onClick={() => onRowClick(property)}
               >
                 <td className="p-2">
                   <img
@@ -49,7 +36,7 @@ export const PropertyList = ({
                 <td className="p-2">{property.location}</td>
                 <td className="p-2">{property.price}€</td>
                 <td className="p-2">{property.rooms}</td>
-                <td className="p-2">{property.area} m2</td>
+                <td className="p-2">{property.area} m²</td>
                 <td className="p-2">{property.date}</td>
               </tr>
             ))
