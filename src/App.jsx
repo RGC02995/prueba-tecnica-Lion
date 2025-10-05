@@ -16,7 +16,15 @@ function App() {
             </div>
           }
         />
-        <Route path="*" element={<DefaultError />} />
+        <Route
+          path="*"
+          element={
+            <div className="flex bg-neutral-200 min-h-screen">
+              <SideBar />
+              <DefaultError />
+            </div>
+          }
+        />
       </Routes>
     </div>
   );

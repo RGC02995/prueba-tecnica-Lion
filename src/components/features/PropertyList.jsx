@@ -1,4 +1,10 @@
-export const PropertyList = ({ properties }) => {
+export const PropertyList = ({
+  properties,
+  onRowClick,
+  setSelectedPropertie,
+  setShowSpecs,
+  showSpecs,
+}) => {
   return (
     <div className="mt-3 overflow-x-auto rounded-md max-h-[80vh] no-scrollbar">
       <table className="w-full border-collapse text-[0.5rem] mt-4 overflow-hidden rounded-tl-md rounded-tr-md ">
@@ -18,7 +24,18 @@ export const PropertyList = ({ properties }) => {
         <tbody>
           {properties.length > 0 ? (
             properties?.map((property) => (
-              <tr key={property.id} className="border-t text-center">
+              <tr
+                key={property.id}
+                className="border-t text-center cursor-pointer hover:bg-neutral-300"
+                onClick={() =>
+                  onRowClick(
+                    property,
+                    setSelectedPropertie,
+                    setShowSpecs,
+                    showSpecs
+                  )
+                }
+              >
                 <td className="p-2">
                   <img
                     src={property.images}

@@ -4,7 +4,7 @@ import properties from "../data/properties.json";
 export const useProperties = () => {
   const [allProperties, setAllProperties] = useState([]);
 
-  // Al montar el hook, cargamos las propiedades iniciales + las guardadas en localStorage
+  // Cargamos las propiedades iniciales + las guardadas en localStorage
   useEffect(() => {
     const stored = localStorage.getItem("propiedades");
     const extras = stored ? JSON.parse(stored) : [];
