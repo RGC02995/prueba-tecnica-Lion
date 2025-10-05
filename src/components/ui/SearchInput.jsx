@@ -1,6 +1,6 @@
 export const SearchInput = ({ search, setSearch }) => {
   return (
-    <div className="mt-20 flex justify-center" id="searchInput">
+    <div className="mt-5 flex justify-center" id="searchInput">
       <div className="flex gap-2 items-center p-1 m-auto">
         <input
           type="text"

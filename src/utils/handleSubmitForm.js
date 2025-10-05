@@ -3,7 +3,6 @@ export const handleSubmitForm = (e, addProperty) => {
 
   const formData = new FormData(e.currentTarget);
   const data = Object.fromEntries(formData.entries());
-  console.log(data);
   //Comprobamos que la información de los inputs no esté vacia
   for (const key in data) {
     if (!data[key] || data[key].toString().trim() === "") {
