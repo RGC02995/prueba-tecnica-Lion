@@ -11,5 +11,6 @@ export const handleSubmitForm = (e, addProperty) => {
     }
   }
   addProperty(data); // Añade al array directamente
+
   e.currentTarget.reset();
 };

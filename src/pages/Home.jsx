@@ -11,12 +11,12 @@ import { filterProperties } from "../utils/filterProperties.js";
 import { useProperties } from "../hooks/useProperties.js";
 
 export const Home = () => {
-  const { allProperties } = useProperties();
+  const { allProperties, addProperty } = useProperties();
   {
     /*States*/
   }
   const [search, setSearch] = useState();
-  const [addProperty, setAddProperty] = useState(false);
+  const [addModal, setAddModal] = useState(false);
   {
     /*Functions*/
   }
@@ -32,20 +32,18 @@ export const Home = () => {
             Propiedades
           </h1>
           {/*Boton */}
-          <BtnAddProperty
-            addProperty={addProperty}
-            setAddProperty={setAddProperty}
-          />
+          <BtnAddProperty addProperty={addModal} setAddProperty={setAddModal} />
         </div>
         {/* Buscador */}
         <SearchInput search={search} setSearch={setSearch} />
         {/*Lista de propiedades*/}
         <PropertyList properties={filteredProperties} />
       </div>
-      {addProperty && (
+      {addModal && (
         <AddPropertyModal
+          addModal={addModal}
+          setAddModal={setAddModal}
           addProperty={addProperty}
-          setAddProperty={setAddProperty}
         />
       )}
     </div>

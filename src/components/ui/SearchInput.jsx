@@ -6,7 +6,7 @@ export const SearchInput = ({ search, setSearch }) => {
           type="text"
           placeholder="Buscar propiedad"
           className="rounded-md border-neutral-400 border-1 text-xs p-1 w-48 items-center text-center "
-          value={search}
+          value={search || ""}
           onChange={(e) => setSearch(e.target.value)}
         ></input>
         <i></i>

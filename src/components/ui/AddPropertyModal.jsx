@@ -1,9 +1,9 @@
 import { handleSubmitForm } from "../../utils/handleSubmitForm.js";
 import { handleClickOutside } from "../../utils/handleClickOutside.js";
-export const AddPropertyModal = ({ setAddProperty, addProperty }) => {
+export const AddPropertyModal = ({ setAddModal, addModal, addProperty }) => {
   return (
     <div
-      onClick={(e) => handleClickOutside(e, addProperty, setAddProperty)}
+      onClick={(e) => handleClickOutside(e, { addModal, setAddModal })}
       id="divForm"
       className="fixed inset-0 flex items-center justify-center bg-black/50 z-30"
     >
@@ -15,6 +15,12 @@ export const AddPropertyModal = ({ setAddProperty, addProperty }) => {
                    -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg"
       >
         <h2 className="text-m text-center mb-4">Añadir propiedad</h2>
+        <input
+          type="text"
+          name="id"
+          placeholder="Nombre/ID"
+          className="h-1  w-full p-2.5 mb-2 rounded text-black bg-neutral-100"
+        />
         <input
           type="text"
           name="imagen"
