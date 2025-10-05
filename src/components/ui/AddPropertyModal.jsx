@@ -1,28 +1,23 @@
+import { useProperties } from "../../hooks//useProperties.js";
+import { handleSubmitForm } from "../../utils/handleSubmitForm.js";
+
 export const AddPropertyModal = () => {
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-    const json = JSON.stringify(data);
-
-    console.log(json);
-  };
+  const { addProperty } = useProperties();
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-30">
       <form
-        onSubmit={handleSubmit}
+        onSubmit={(e) => handleSubmitForm(e, addProperty)}
         className="w-[300px] p-4 z-40 bg-neutral-600 
                    absolute top-1/2 left-1/2 transform 
                    -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg"
       >
         <h2 className="text-m text-center mb-4">Añadir propiedad</h2>
         <input
-          type="file"
+          type="text"
           name="imagen"
-          accept="image/*"
-          className="w-full p-2.5 mb-2 rounded bg-neutral-100"
+          placeholder="Añade Url imagen"
+          className="h-1  w-full p-2.5 mb-2 rounded text-black bg-neutral-100"
         />
         <input
           name="office"

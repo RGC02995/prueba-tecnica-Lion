@@ -6,9 +6,12 @@ import { BtnAddProperty } from "../components/ui/BtnAddProperty";
 import { AddPropertyModal } from "../components/ui/AddPropertyModal";
 import { filterProperties } from "../utils/filterProperties.js";
 
-import propertiesData from "../data/properties.json";
+// import propertiesData from "../data/properties.json";
+
+import { useProperties } from "../hooks/useProperties.js";
 
 export const Home = () => {
+  const { allProperties } = useProperties();
   {
     /*States*/
   }
@@ -17,7 +20,7 @@ export const Home = () => {
   {
     /*Functions*/
   }
-  const filteredProperties = filterProperties(propertiesData, search);
+  const filteredProperties = filterProperties(allProperties, search);
 
   return (
     <div className="w-full h-screen bg-neutral-200 flex flex-col items-center py-6">
