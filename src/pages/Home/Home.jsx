@@ -1,27 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { SearchInput } from "../../components/ui/SearchInput";
 import { PropertyList } from "../../components/features/PropertyList";
 import { BtnAddProperty } from "../../components/ui/BtnAddProperty";
-import { AddPropertyModal } from "../../components/ui/AddPropertyModal";
-import { SpecsPropertiesModal } from "../../components/ui/SpecsPropertiesModal";
+import { AddPropertyModal } from "../../components/features/AddPropertyModal.jsx";
+import { SpecsPropertiesModal } from "../../components/features/SpecsPropertiesModal.jsx";
 import { useProperties } from "../../hooks/useProperties";
 import { filterProperties } from "../../utils/filterProperties";
 import { onRowClick } from "../../utils/handleRowClick.js";
 
 export const Home = () => {
+  {
+    /*Hooks */
+  }
   const { allProperties, addProperty } = useProperties();
+  {
+    /*Estados*/
+  }
   const [search, setSearch] = useState("");
   const [addModal, setAddModal] = useState(false);
   const [selectedPropertie, setSelectedPropertie] = useState(null);
   const [showSpecs, setShowSpecs] = useState(false);
 
+  {
+    /*Funciones */
+  }
   const filteredProperties = filterProperties(allProperties, search);
-
-  useEffect(() => {
-    if (selectedPropertie) {
-      console.log("Propiedad seleccionada:", selectedPropertie);
-    }
-  }, [selectedPropertie, search, allProperties]);
 
   return (
     <div className="w-full h-screen bg-neutral-200 flex flex-col items-center py-6 p-2 overflow-hidden">
@@ -35,7 +38,9 @@ export const Home = () => {
         </div>
         {/*Buscador*/}
         <SearchInput search={search} setSearch={setSearch} />
-        //TODO:Crear estado de carga y manejo de errores para el filtrado
+
+        {/*TODO:Crear estado de carga y manejo de errores para el filtrado*/}
+
         <PropertyList
           properties={filteredProperties}
           onRowClick={(property) =>
@@ -43,6 +48,7 @@ export const Home = () => {
           }
         />
       </div>
+
       {/*Modales*/}
       {addModal && (
         <AddPropertyModal
