@@ -1,66 +1,63 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { SearchInput } from "../../components/ui/SearchInput";
 import { PropertyList } from "../../components/features/PropertyList";
-import { BtnAddProperty } from "../../components/ui/BtnAddProperty";
+import { HomeHeader } from "../../components/features/HomeHeader";
 import { AddPropertyModal } from "../../components/features/AddPropertyModal.jsx";
 import { SpecsPropertiesModal } from "../../components/features/SpecsPropertiesModal.jsx";
 import { useProperties } from "../../hooks/useProperties";
 import { filterProperties } from "../../utils/filterProperties";
-import { onRowClick } from "../../utils/handleRowClick.js";
+import { sortProperties } from "../../utils/sortProperties";
 
 export const Home = () => {
-  {
-    /*Hooks */
-  }
   const { allProperties, addProperty } = useProperties();
-  {
-    /*Estados*/
-  }
   const [search, setSearch] = useState("");
   const [addModal, setAddModal] = useState(false);
-  const [selectedPropertie, setSelectedPropertie] = useState(null);
+  const [selectedProperty, setSelectedProperty] = useState(null);
   const [showSpecs, setShowSpecs] = useState(false);
+  const [sort, setSort] = useState({ field: null, direction: "asc" });
 
-  {
-    /*Funciones */
-  }
-  const filteredProperties = filterProperties(allProperties, search);
+  const filteredProperties = useMemo(
+    () => sortProperties(filterProperties(allProperties, search), sort),
+    [allProperties, search, sort]
+  );
+
+  const handleSort = (field) => {
+    setSort((prev) => ({
+      field,
+      direction: prev.field === field && prev.direction === "asc" ? "desc" : "asc",
+    }));
+  };
 
   return (
-    <div className="w-full h-screen bg-neutral-200 flex flex-col items-center py-6 p-2 overflow-hidden">
-      <div className="w-[90vw] h-[90vh] p-6 rounded-lg shadow-lg flex flex-col bg-neutral-100">
-        {/*Header */}
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4">
-          <h1 className="text-neutral-800 text-lg sm:text-2xl font-semibold mb-2 sm:mb-0">
-            Propiedades
-          </h1>
-          <BtnAddProperty addProperty={addModal} setAddProperty={setAddModal} />
-        </div>
-        {/*Buscador*/}
+    <div className="w-full h-screen bg-neutral-200 flex flex-col items-center py-4 px-2">
+      <div className="w-[95vw] sm:w-[90vw] h-[calc(100vh-2rem)] p-3 sm:p-6 rounded-lg shadow-lg flex flex-col bg-neutral-100">
+        <HomeHeader addModal={addModal} setAddModal={setAddModal} />
+
         <SearchInput search={search} setSearch={setSearch} />
 
-        {/*TODO:Crear estado de carga y manejo de errores para el filtrado*/}
-
-        <PropertyList
-          properties={filteredProperties}
-          onRowClick={(property) =>
-            onRowClick(property, setSelectedPropertie, setShowSpecs)
-          }
-        />
+        <div className="flex-1 min-h-0">
+          <PropertyList
+            properties={filteredProperties}
+            onRowClick={(property) => {
+              setSelectedProperty(property);
+              setShowSpecs(true);
+            }}
+            sort={sort}
+            onSort={handleSort}
+          />
+        </div>
       </div>
 
-      {/*Modales*/}
       {addModal && (
         <AddPropertyModal
-          addModal={addModal}
           setAddModal={setAddModal}
           addProperty={addProperty}
         />
       )}
 
-      {showSpecs && selectedPropertie && (
+      {showSpecs && selectedProperty && (
         <SpecsPropertiesModal
-          selectedPropertie={selectedPropertie}
+          selectedProperty={selectedProperty}
           onClose={() => setShowSpecs(false)}
         />
       )}

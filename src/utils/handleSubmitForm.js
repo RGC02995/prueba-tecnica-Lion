@@ -1,15 +1,23 @@
-export const handleSubmitForm = (e, addProperty) => {
+export const handleSubmitForm = (e, addProperty, setErrors) => {
   e.preventDefault();
-
   const formData = new FormData(e.currentTarget);
   const data = Object.fromEntries(formData.entries());
-  //Comprobamos que la información de los inputs no esté vacia
+
+  const errors = {};
   for (const key in data) {
     if (!data[key] || data[key].toString().trim() === "") {
-      return console.log(`El campo "${key}" es obligatorio`);
+      errors[key] = "Este campo es obligatorio";
     }
   }
-  addProperty(data); // Añade al array directamente
 
+  if (Object.keys(errors).length > 0) {
+    setErrors(errors);
+    return;
+  }
+
+  setErrors({});
+  data.id = crypto.randomUUID();
+  data.images = [data.images];
+  addProperty(data);
   e.currentTarget.reset();
 };

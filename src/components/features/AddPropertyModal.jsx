@@ -1,81 +1,41 @@
+import { useState } from "react";
 import { handleSubmitForm } from "../../utils/handleSubmitForm.js";
 import { handleClickOutside } from "../../utils/handleClickOutside.js";
-export const AddPropertyModal = ({ setAddModal, addModal, addProperty }) => {
+import { ModalOverlay } from "../ui/ModalOverlay.jsx";
+import { FormField } from "../ui/FormField.jsx";
+import { FORM_ROWS } from "../../data/formFields.js";
+
+export const AddPropertyModal = ({ setAddModal, addProperty }) => {
+  const [errors, setErrors] = useState({});
+
   return (
-    <div
-      onClick={(e) => handleClickOutside(e, { addModal, setAddModal })}
-      id="divForm"
-      className="fixed inset-0 flex items-center justify-center bg-black/50 z-30"
-    >
-      <form
-        id="addEventForm"
-        onSubmit={(e) => handleSubmitForm(e, addProperty)}
-        className="w-[300px] p-4 z-40 bg-neutral-600 
-                   absolute top-1/2 left-1/2 transform 
-                   -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg"
-      >
-        <h2 className="text-m text-center mb-4">Añadir propiedad</h2>
-        <input
-          type="text"
-          name="id"
-          placeholder="Nombre/ID"
-          className="h-1  w-full p-2.5 mb-2 rounded text-black bg-neutral-100"
-        />
-        <input
-          type="text"
-          name="imagen"
-          placeholder="Añade Url imagen"
-          className="h-1  w-full p-2.5 mb-2 rounded text-black bg-neutral-100"
-        />
-        <input
-          name="office"
-          type="text"
-          placeholder="Oficina"
-          className=" h-1  w-full p-2.5 mb-2 rounded text-black bg-neutral-100"
-        />
-        <input
-          name="type"
-          type="text"
-          placeholder="Tipo"
-          className=" h-1  w-full p-2.5 mb-2 rounded text-black bg-neutral-100"
-        />
-        <input
-          name="location"
-          type="text"
-          placeholder="Dirección"
-          className=" h-1  w-full p-2.5 mb-2 rounded text-black bg-neutral-100"
-        />
-        <input
-          name="price"
-          type="text"
-          placeholder="Precio"
-          className=" h-1  w-full p-2.5 mb-2 rounded text-black bg-neutral-100"
-        />
-        <input
-          name="rooms"
-          type="text"
-          placeholder="Habitaciones"
-          className=" h-1  w-full p-2.5 mb-2 rounded text-black bg-neutral-100"
-        />
-        <input
-          name="area"
-          type="number"
-          placeholder="m2"
-          className=" h-1  w-full p-2.5 mb-2 rounded text-black bg-neutral-100"
-        />
-        <input
-          name="date"
-          type="date"
-          placeholder="Fecha"
-          className=" h-1  w-full p-2.5 mb-2 rounded text-black bg-neutral-100"
-        />
-        <button
-          type="submit"
-          className=" bg-neutral-500 hover:bg-neutral-100 px-4 py-2 rounded"
+    <ModalOverlay id="divForm" onClick={(e) => handleClickOutside(e, { setAddModal })}>
+      <div className="w-[90vw] max-w-[420px] bg-neutral-100 rounded-lg shadow-xl overflow-y-auto max-h-[90vh]">
+        <div className="bg-neutral-950 text-white px-4 py-3 rounded-t-lg">
+          <h2 className="text-sm font-semibold">Añadir propiedad</h2>
+        </div>
+
+        <form
+          id="addEventForm"
+          onSubmit={(e) => handleSubmitForm(e, addProperty, setErrors)}
+          className="px-4 py-3 flex flex-col gap-2"
         >
-          Guardar
-        </button>
-      </form>
-    </div>
+          {FORM_ROWS.map((row, i) => (
+            <div key={i} className={row.length > 1 ? "flex gap-2" : ""}>
+              {row.map((field) => (
+                <FormField key={field.name} {...field} errors={errors} />
+              ))}
+            </div>
+          ))}
+
+          <button
+            type="submit"
+            className="w-full bg-neutral-950 text-white py-2 rounded-md text-sm font-medium hover:bg-neutral-700 transition-colors duration-150"
+          >
+            Guardar propiedad
+          </button>
+        </form>
+      </div>
+    </ModalOverlay>
   );
 };

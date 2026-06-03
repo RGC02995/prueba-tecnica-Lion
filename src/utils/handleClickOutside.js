@@ -1,5 +1,5 @@
-export const handleClickOutside = (e, { setAddModal, addModal }) => {
+export const handleClickOutside = (e, { setAddModal }) => {
   if (e.target.id === "divForm") {
-    setAddModal(!addModal);
+    setAddModal(false);
   }
 };

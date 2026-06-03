@@ -1,96 +1,39 @@
-export const SpecsPropertiesModal = ({ selectedPropertie, onClose }) => {
-  if (!selectedPropertie) return null;
+import { ModalOverlay } from "../ui/ModalOverlay.jsx";
+import { ModalHeader } from "../ui/ModalHeader.jsx";
+import { PropertyPrice } from "./PropertyPrice.jsx";
+import { PropertySpecs } from "./PropertySpecs.jsx";
+import { PropertyDescription } from "./PropertyDescription.jsx";
+import { SPEC_FIELDS } from "../../data/propertyFields.js";
+
+export const SpecsPropertiesModal = ({ selectedProperty, onClose }) => {
+  if (!selectedProperty) return null;
+
+  const specs = SPEC_FIELDS.map(({ label, field, format }) => ({
+    label,
+    value: format ? format(selectedProperty[field]) : (selectedProperty[field] || "-"),
+  }));
 
   return (
-    <div
-      className="fixed inset-0 flex items-center justify-center bg-black/50 z-30"
-      onClick={onClose}
-    >
-      {/* Container */}
+    <ModalOverlay onClick={onClose}>
       <div
-        className="w-[80vw] h-auto bg-neutral-100 rounded-sm p-8"
+        className="w-[95vw] md:w-[80vw] bg-neutral-100 rounded-xl shadow-2xl p-4 md:p-8 overflow-y-auto max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
-        <header className="flex justify-between mb-4 text-neutral-500">
-          <div>{selectedPropertie.reference}</div>
-          <button onClick={onClose}>X</button>
-        </header>
+        <ModalHeader reference={selectedProperty.reference} onClose={onClose} />
+        <PropertyPrice price={selectedProperty.price} location={selectedProperty.location} />
 
-        {/* Precio y ubicación */}
-        <div className="mb-4">
-          <div className="font-bold text-4xl">{selectedPropertie.price}€</div>
-          <div className="text-[20px] text-neutral-400">
-            {selectedPropertie.location}
-          </div>
-        </div>
-
-        {/* Contenedor principal con 2 columnas */}
         <div className="flex flex-col md:flex-row gap-6">
-          {/* Columna izquierda */}
           <div className="flex-1 flex flex-col gap-4">
-            {/* Características */}
-            <div className="mb-3 text-[12px]">
-              Características:
-              <div className="mt-2 grid grid-cols-4 gap-2 text-neutral-400 text-[10px]">
-                <div className="flex flex-col">
-                  Superficie:{" "}
-                  <b className="text-black">{selectedPropertie.area} m²</b>
-                </div>
-                <div className="flex flex-col">
-                  Habitaciones:{" "}
-                  <b className="text-black">{selectedPropertie.rooms}</b>
-                </div>
-                <div className="flex flex-col">
-                  Baños:{" "}
-                  <b className="text-black">
-                    {selectedPropertie.bathrooms || "-"}
-                  </b>
-                </div>
-                <div className="flex flex-col">
-                  Clase:{" "}
-                  <b className="text-black">{selectedPropertie.class || "-"}</b>
-                </div>
-                <div className="flex flex-col">
-                  Emisiones:{" "}
-                  <b className="text-black">
-                    {selectedPropertie.emissions || "-"}
-                  </b>
-                </div>
-                <div className="flex flex-col">
-                  Construcción:{" "}
-                  <b className="text-black">
-                    {selectedPropertie.construction || "-"}
-                  </b>
-                </div>
-                <div className="flex flex-col">
-                  Conservación:{" "}
-                  <b className="text-black">
-                    {selectedPropertie.conservation || "-"}
-                  </b>
-                </div>
-              </div>
-            </div>
-
-            {/* Imagen */}
-            <div>
-              <img
-                src={selectedPropertie.images}
-                alt="foto"
-                className="w-full h-40 object-cover rounded"
-              />
-            </div>
+            <PropertySpecs specs={specs} />
+            <img
+              src={selectedProperty.images[0]}
+              alt="foto"
+              className="w-full h-52 object-cover rounded-lg"
+            />
           </div>
-
-          {/* Columna derecha */}
-          <div className="flex-1">
-            <div className="text-black text-[14px]">
-              <h3 className="font-bold mb-2">Descripción</h3>
-              <p>{selectedPropertie.description || "No disponible"}</p>
-            </div>
-          </div>
+          <PropertyDescription description={selectedProperty.description} />
         </div>
       </div>
-    </div>
+    </ModalOverlay>
   );
 };

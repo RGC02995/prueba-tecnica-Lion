@@ -1,16 +1,14 @@
-import { Link } from "react-router-dom";
-
+import { SideBarItem } from "./SideBarItem.jsx";
 import { HomeIcon } from "../icons/HomeIcon";
-export const SideBar = () => {
-  return (
-    <div className="w-10 h-[100vh]  border-indigo-200  max-w-[75px] bg-neutral-100 ]">
-      <ul className="p-2  style-none text-neutral-400 flex flex-col gap-10 items-center">
-        <Link to="/">
-          <li className="hover:bg-neutral-200 hover:text-neutral-950 p-2 mt-10  rounded-md cursor-pointer max-h-[45px] flex items-center justify-center">
-            <HomeIcon />
-          </li>
-        </Link>
-      </ul>
-    </div>
-  );
-};
+
+export const SideBar = () => (
+  <div className="w-16 sm:w-20 min-h-screen bg-neutral-100 shadow-sm">
+    <ul className="p-2 list-none text-neutral-400 flex flex-col gap-6 items-center pt-6">
+      <SideBarItem
+        to="/"
+        icon={<HomeIcon width="22" height="22" />}
+        label="Inicio"
+      />
+    </ul>
+  </div>
+);
