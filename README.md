@@ -1,131 +1,119 @@
-# 🏠 Property List
+# Property List
 
-Proyecto de gestión y visualización de propiedades inmobiliarias hecho con **React + Vite + TailwindCSS + React-Router-Dom**.
+Aplicación de gestión y visualización de propiedades inmobiliarias desarrollada con **React 19 + Vite + TailwindCSS v4 + React Router DOM v7**.
 
 ---
 
-## 🚀 Instalación y ejecución
+## Instalación y ejecución
 
-1. Clonar el repositorio:
+```bash
+# Clonar el repositorio
+git clone https://github.com/tu-usuario/property-list.git
+cd property-list
 
-   ```bash
-   git clone https://github.com/tu-usuario/property-list.git
-   cd property-list
+# Instalar dependencias
+npm install
 
-   ```
+# Ejecutar en desarrollo
+npm run dev
+```
 
-2. Instalar dependencias
-   ```bash
-   npm install
-   ```
-3. Ejecutar en desarrollo
-   ```bash
-   npm run dev
-   ```
+---
 
-## 📂 Estructura del proyecto y decisiones técnicas
+## Estructura del proyecto
 
 ```
 src/
-├── assets/              # Imágenes, íconos y recursos estáticos
 ├── components/
-│   ├── layout/          # Layouts globales (Sidebar, Layout principal con <Outlet/>)
-│   ├── ui/              # Componentes de interfaz reutilizables (inputs, botones, )
-│   ├── features/        # Componentes con lógica de negocio (ej: PropertyList)
-│   └── icons/           # Iconos SVG exportados como componentes React
-├── data/                # Datos mock (ej: properties.json)
-├── hooks/               # Custom hooks para lógica reutilizable (ej: useProperties)
-├── pages/               # Páginas principales (Home, Error)
-├── utils/               # Funciones auxiliares (filtros, handlers de eventos)
-├── App.jsx              # Configuración de rutas y layout principal
-├── main.jsx             # Punto de entrada React
+│   ├── layout/          # Layout global con <Outlet/>, SideBar y SideBarItem
+│   ├── ui/              # Componentes reutilizables sin lógica de negocio
+│   │                      (ModalOverlay, ModalHeader, FormField, SortableColumn...)
+│   ├── features/        # Componentes ligados al dominio inmobiliario
+│   │                      (PropertyList, PropertyRow, AddPropertyModal, SpecsPropertiesModal...)
+│   └── icons/           # Iconos SVG como componentes React
+├── data/
+│   ├── properties.json  # Datos mock de propiedades
+│   ├── columns.js       # Definición de columnas de la tabla
+│   ├── propertyFields.js# Campos de búsqueda, ordenación y especificaciones
+│   └── formFields.js    # Estructura del formulario de nueva propiedad
+├── hooks/
+│   └── useProperties.js # Estado global de propiedades + persistencia en localStorage
+├── pages/
+│   ├── Home/            # Página principal
+│   └── Error/           # Página de error 404
+├── utils/
+│   ├── filterProperties.js   # Filtrado por campos relevantes
+│   ├── sortProperties.js     # Ordenación numérica y alfabética
+│   ├── handleSubmitForm.js   # Validación y envío del formulario
+│   └── handleClickOutside.js # Cierre de modal al clicar fuera
+├── App.jsx              # Rutas con Layout persistente
+├── main.jsx             # Punto de entrada
 └── index.css            # Estilos globales + Tailwind
-
-
 ```
 
-## 🛠️ Decisiones técnicas
+---
 
-##### React + Vite:
+## Funcionalidades
 
-Vite como bundler por su rapidez en el desarrollo y optimización en producción. React como librería principal para la UI.
+### Listado de propiedades
+Tabla con todas las propiedades disponibles mostrando foto, oficina, referencia, tipo, dirección, precio, habitaciones, superficie y fecha. El header es sticky — permanece visible al hacer scroll.
 
-##### TailwindCSS:
+### Búsqueda dinámica
+Filtra propiedades en tiempo real por título, ubicación, tipo, oficina o referencia. Si no hay resultados muestra un estado vacío orientativo.
 
-Se eligió por su velocidad en prototipado y consistencia visual, evitando escribir CSS repetitivo.
+### Ordenación por columnas
+Las columnas Precio, Habitaciones, Superficie y Fecha son clicables. El primer clic ordena ascendente, el segundo descendente. Un indicador `↑/↓` muestra la columna y dirección activas.
 
-##### React Router DOM:
+### Modal de detalles
+Al hacer clic en cualquier fila se abre un modal con el precio formateado, ubicación, características (superficie, habitaciones, baños, clase, emisiones, construcción, conservación), imagen y descripción. Se cierra clicando fuera o con el botón `✕`.
 
-Para gestionar la navegación y mantener un layout persistente con Sidebar en todas las rutas.
+### Añadir propiedad
+El botón "Añadir nueva propiedad" abre un formulario con validación inline por campo. Si algún campo está vacío, muestra el error debajo del input afectado sin interrumpir con alertas. Al guardar, la propiedad se añade a la tabla y se persiste en `localStorage` para que sobreviva recargas. Se cierra clicando fuera del formulario.
 
-##### División en ui/, features/ y layout/:
+### Persistencia
+Las propiedades añadidas manualmente se guardan en `localStorage` y se combinan con las del JSON al cargar la app.
 
-- ui/ → Pequeños componentes reutilizables sin lógica compleja (botones, inputs, modales).
+---
 
-- features/ → Bloques de UI ligados al negocio (ejemplo: listado de propiedades).
+## Decisiones técnicas
 
-- layout/ → Componentes estructurales que definen la organización visual global.
+**React + Vite**
+Vite (con rolldown) como bundler por su velocidad en desarrollo y optimización en producción.
 
-- Custom hooks (hooks/) → Para centralizar la lógica de estado compartido (ej: useProperties maneja el array de propiedades y su actualización).
+**TailwindCSS v4**
+Clases utilitarias para un desarrollo rápido y consistente. Se optó por instalación manual con `postcss.config.js` siguiendo la documentación oficial de v4.
 
-- Separación de utilidades (utils/) → Funciones puras como filterProperties o onRowClick están aisladas para mantener los componentes más limpios.
+**React Router DOM v7**
+Gestiona la navegación con un `Layout` persistente mediante `<Outlet/>`, garantizando que la barra lateral esté siempre presente sin duplicar código en cada ruta.
 
-## ⚙️ Funcionalidades implementadas y cómo se usan
+**Separación de responsabilidades**
+- `data/` — todos los datos y configuraciones estáticas en un único lugar
+- `ui/` — componentes reutilizables sin conocimiento del dominio
+- `features/` — componentes ligados a la lógica inmobiliaria
+- `hooks/` — estado compartido y efectos secundarios centralizados
+- `utils/` — funciones puras y aisladas
 
-##### Listado de propiedades
+**Persistencia con localStorage**
+Sin backend disponible, las propiedades añadidas se guardan en `localStorage`. El hook `useProperties` separa las propiedades del JSON original de las añadidas manualmente, guardando solo estas últimas.
 
-Muestra tarjetas con imagen, precio, ubicación y características.
+---
 
-Uso: Navegar por la lista y ver información básica de cada propiedad.
+## Desafíos
 
-##### Búsqueda
+**TailwindCSS v4** fue nuevo para mí. La documentación oficial fue clave para completar la instalación manual, y adaptarse al sistema de clases utilitarias requirió reaprender cómo aplicar estilos.
 
-Permite buscar propiedades por título o ubicación.
+**Persistencia sin backend** obligó a buscar una alternativa rápida. La solución fue combinar el JSON estático con las entradas guardadas en `localStorage`, manteniendo la separación entre ambas para no corromper los datos originales.
 
-Uso: Escribir un término en la barra de búsqueda y la lista se filtra dinámicamente.
+**Responsive en tablas** — las tablas con muchas columnas son el mayor reto responsive en CSS. La solución final combina `border-separate border-spacing-0` (compatible con `position: sticky`), headers pegajosos y tamaños de texto adaptativos.
 
-##### Ordenación
+---
 
-Ordena propiedades por precio ascendente/descendente o por fecha.
+## Posibles mejoras
 
-Uso: Seleccionar opción en el dropdown de ordenación y el listado se reorganiza.
-
-##### Barra lateral
-
-Redirige al usuario al inicio
-
-Uso: Seleccionar icono Home para redirección.
-
-##### Modal de detalles
-
-Al hacer clic en una tarjeta, se abre un modal con descripción completa, imágenes y características.
-
-Uso: Hacer clic en cualquier propiedad y cerrar el modal con el botón de cierre.
-
-##### Modal añadir propiedades
-
-Al hacer clic se abrirá un formulario, donde al rellenarlo y presionar el botón guardar, almacenará en en localstorage el nuevo inmueble.
-
-Uso: hacer clic en el botón Añadir nueva propiedad, para cerrarlo presionar fuera del formulario.
-
-## Desafios
-
-1. Puesto que nunca había usado tailwind, tube que ponerme a investigar el primer dia, tube problemas con los comandos que estaban en el md, así que me dirigí a la documentación oficial, y complete la instalación de forma manual creando los archivos postcss.config.js y tailwind.config.js y con su respectivo contenido, tube que reaprender a usar los estilos ya que estoy acostumbrado a usar los estilos en archivos css o scss, lo que me ha hecho un poco más lento todo el proceso, pero me ha gustado el desafio.
-
-2. Quise crear la función de poder añadir nuevos inmuebles, aunque no con la eficiencia que querría como al pasar las imágenes tube que pensar en una alternativa rápida, lo que se me ocurrió fue coger las propiedades en si y actualizarlas con las nuevas añadidas almacenandolas en el storage par así poder añadirlas ya que directamente al JSON no se pueden añadir al no disponer de un backend como tal. Aunque ahora pensándolo mejor podría haber hecho uso de Redux para almacenar todo...
-
-3. Quizá quise abarcar demasiado para el poco tiempo del que dispuse al final por el trabajo y creé rutas con con react router dom, pero no he podido terminarlo a tiempo como me hubiese gustado.
-
-## 🕐 Mejoras que haría con más tiempo
-
-- Añadir redux para el almacenamiento de los inmuebles y no localStorage, así podriamos haber manejado mejor el estado global de los inmuebles y creado un código más limpio.
-- Añadir paginación o scroll infinito a la lista de propiedades.
-- Añadir soporte para la subida de imágenes en AddPropertyModal.
-- Añadir un Darkmode con Tailwind.
-- Terminar el Layout con el componente SideBar siempre presente.
-- Añadir más opciones a la barra lateral y crear un filtrado también por los iconos de esta.
-- Crear un spinner y gestión de errores de la busqueda.
-- Implementar una API real en lugar de datos mock(JSON local).
-- Añadir SVG al buscador y barra lateral.
-- Añadir pagina y ruta de ajustes, botón de editar el modal con las propiedades...
-- Mejorar bastante el diseño responsive, ya que con la adaptación a Tailwind tuve que reaprender y no lo he dejado como me hubiese gustado.
+- Implementar una API real en lugar de datos mock
+- Añadir paginación o scroll infinito
+- Soporte para subida de imágenes reales en el formulario
+- Editar y eliminar propiedades existentes
+- Dark mode con TailwindCSS
+- Más opciones en la barra lateral con filtrado por categoría
+- Spinner de carga y gestión de errores de red
